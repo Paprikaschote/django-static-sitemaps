@@ -34,11 +34,7 @@ __author__ = 'xaralis'
 class SitemapGenerator(object):
     def __init__(self, verbosity):
         self.verbosity = verbosity
-        try:
-            self.storage = _lazy_load(conf.STORAGE_CLASS)(location=conf.ROOT_DIR)
-        except TypeError:
-            self.storage = _lazy_load(conf.STORAGE_CLASS)()
-
+        self.storage = _lazy_load(conf.STORAGE_CLASS)()
         self.sitemaps = _lazy_load(conf.ROOT_SITEMAP)
 
         if not isinstance(self.sitemaps, dict):

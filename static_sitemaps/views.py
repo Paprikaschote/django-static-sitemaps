@@ -11,10 +11,7 @@ class SitemapView(View):
     def get(self, request, *args, **kwargs):
         section = kwargs.get('section')
 
-        try:
-            storage = _lazy_load(conf.STORAGE_CLASS)(location=conf.ROOT_DIR)
-        except TypeError:
-            storage = _lazy_load(conf.STORAGE_CLASS)()
+        storage = _lazy_load(conf.STORAGE_CLASS)()
 
         path = os.path.join(conf.ROOT_DIR, '{}.xml'.format(section))
         if not storage.exists(path):
