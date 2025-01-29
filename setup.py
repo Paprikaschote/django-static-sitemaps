@@ -11,7 +11,7 @@ setup(
     author='Filip Varecha',
     author_email='filip@varecha.work',
     license='BSD',
-    url='http://github.com/xaralis/django-static-sitemaps',
+    url='https://github.com/Paprikaschote/django-static-sitemaps',
 
     packages=(
         'static_sitemaps',
