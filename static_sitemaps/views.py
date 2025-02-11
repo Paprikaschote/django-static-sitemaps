@@ -11,7 +11,13 @@ class SitemapView(View):
     def get(self, request, *args, **kwargs):
         section = kwargs.get('section')
 
-        storage = _lazy_load(conf.STORAGE_CLASS)()
+        if conf.STORAGE_CLASS == "django.core.files.storage.FileSystemStorage":
+            try:
+                storage = _lazy_load(conf.STORAGE_CLASS)(location=conf.ROOT_DIR)
+            except TypeError:
+                storage = _lazy_load(conf.STORAGE_CLASS)()
+        else:
+            storage = _lazy_load(conf.STORAGE_CLASS)()
 
         path = os.path.join(conf.ROOT_DIR, '{}.xml'.format(section))
         if not storage.exists(path):
